@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: negative-deployment
+  namespace: labstranglerfig
+  labels:
+    app: negative
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: negative
+  template:
+    metadata:
+      labels:
+        app: negative
+    spec:
+
+      volumes:
+      - name: img-volume
+        hostPath:
+          path: /hostpaths
+          type: DirectoryOrCreate
+
+      containers:
+      - name: negative
+        image: 'jmdeleonpi/negative:v4'
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: /mnt/negatives/
+          name: img-volume
+      

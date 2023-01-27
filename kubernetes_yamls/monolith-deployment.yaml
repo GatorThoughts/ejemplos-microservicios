@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monolith-deployment
+  namespace: labstranglerfig
+  labels:
+    app: monolith
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monolith
+  template:
+    metadata:
+      labels:
+        app: monolith
+    spec:
+      volumes:
+      - name: img-volume
+        hostPath:
+          path: /hostpaths
+          type: DirectoryOrCreate
+
+      containers:
+      - name: monolith
+        image: 'jmdeleonpi/monolith:v2.0'
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: /mnt/negatives/
+          name: img-volume
+      

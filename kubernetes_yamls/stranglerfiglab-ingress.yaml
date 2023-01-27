@@ -1,0 +1,48 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: monolith-ingress
+  namespace: labstranglerfig
+spec:
+  ingressClassName: public
+  rules:
+    - host: monolith.ingress.com
+      http:
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: mono-service
+              port:
+                number: 8501
+    - host: negative.ingress.com
+      http:
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: stranglerfig-service
+              port:
+                number: 8000
+    - host: hist.ingress.com
+      http:
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: stranglerhist-service
+              port:
+                number: 8000
+    - host: downloadsvc.ingress.com
+      http:
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: stranglerdownload-service
+              port:
+                number: 8000

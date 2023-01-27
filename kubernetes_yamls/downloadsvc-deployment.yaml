@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: downloadsvc-deployment
+  namespace: labstranglerfig
+  labels:
+    app: downloadsvc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: downloadsvc
+  template:
+    metadata:
+      labels:
+        app: downloadsvc
+    spec:
+
+      volumes:
+      - name: img-volume
+        hostPath:
+          path: /hostpaths
+          type: DirectoryOrCreate
+
+      containers:
+      - name: downloadsvc
+        image: 'jmdeleonpi/downloadsvc:v1'
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: /mnt/negatives/
+          name: img-volume
+      

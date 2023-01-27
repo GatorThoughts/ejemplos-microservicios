@@ -1,0 +1,14 @@
+resources:
+#deployments
+- 'negative-deployment.yaml'
+- 'monolith-deployment.yaml'
+- 'hist-deployment.yaml'
+- 'downloadsvc-deployment.yaml'
+#services
+- 'servicefig.yaml'
+- 'servicemono.yaml'
+- 'servicehist.yaml'
+- 'servicedownload.yaml'
+#ingress
+- 'stranglerfiglab-ingress.yaml'
+
