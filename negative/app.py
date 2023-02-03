@@ -12,7 +12,15 @@ app = Flask(__name__)
 
 #recuperar environment variable definida en Dockerfile
 IMG_FOLDER = os.environ['IMG_VOL']
-addr = 'http://downloadsvc.ingress.com'
+
+
+
+
+#Usar localhost:[puerto asignado al servicio de descarga] para pruebas locales con Docker
+addr = 'http://localhost:8001'
+
+#Usar el nombre del servicio para deployments en kubernetes
+#addr = 'http://downloadsvc.ingress.com'
 
 @app.route("/", methods=['GET', 'POST'])
 def main_route():
