@@ -24,7 +24,7 @@ spec:
 
       containers:
       - name: downloadsvc
-        image: 'jmdeleonpi/downloadsvc:v1'
+        image: 'jmdeleonpi/downloadsvc:v2'
         ports:
         - containerPort: 8000
         volumeMounts:
